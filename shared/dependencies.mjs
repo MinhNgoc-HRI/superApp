@@ -22,6 +22,16 @@ const deps = {
       eager: true,
       requiredVersion: "0.70.6",
     },
+    "pmn-rn-component": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^0.1.0",
+    },
+    "react-native-fast-image": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^8.6.3",
+    }
     // "@react-navigation/native": {
     //   singleton: true,
     //   eager: true,

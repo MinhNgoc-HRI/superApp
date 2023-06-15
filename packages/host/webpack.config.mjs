@@ -160,6 +160,8 @@ export default env => {
             /node_modules(.*[/\\])+metro/,
             /node_modules(.*[/\\])+abort-controller/,
             /node_modules(.*[/\\])+@callstack\/repack/,
+            /node_modules(.*[/\\])+pmn-rn-component/,
+            /node_modules(.*[/\\])+react-native-fast-image/,
           ],
           use: 'babel-loader',
         },
