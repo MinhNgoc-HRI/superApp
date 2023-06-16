@@ -1,7 +1,7 @@
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import * as Repack from '@callstack/repack';
-import {deps} from '../../shared/dependencies.mjs';
+
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
  * https://github.com/callstack/repack/blob/main/README.md
@@ -160,8 +160,6 @@ export default env => {
             /node_modules(.*[/\\])+metro/,
             /node_modules(.*[/\\])+abort-controller/,
             /node_modules(.*[/\\])+@callstack\/repack/,
-            /node_modules(.*[/\\])+pmn-rn-component/,
-            /node_modules(.*[/\\])+react-native-fast-image/,
           ],
           use: 'babel-loader',
         },
@@ -233,31 +231,12 @@ export default env => {
           sourceMapFilename,
           assetsPath,
         },
-        extraChunks: [
-          // {
-          //   // Make all student related chunks local.
-          //   include: ['chuck-demo', /^chuck-demo-.+$/],
-          //   type: 'local',
-          // },
-          // {
-          //   // Anything not student related should be remote and stored under
-          //   // `<projectRoot>/build/output/<platform>/remotes/core`.
-          //   exclude: /^chuck-demo-.+$/,
-          //   type: 'remote',
-          //   outputPath: path.join('build/output', platform, 'remotes/core'),
-          // },
-          // {
-          //   // All teacher related chunks should be remote and stored under
-          //   // `<projectRoot>/build/output/<platform>/remotes/teacher`.
-          //   test: /^teacher.*$/,
-          //   type: 'remote',
-          //   outputPath: path.join('build/output', platform, 'remotes/teacher'),
-          // },
-        ],
       }),
       new Repack.plugins.ModuleFederationPlugin({
-        name: 'host',
-        shared: deps,
+        name: 'myVideo',
+        exposes: {
+          './App': './App.tsx',
+        },
       }),
     ],
   };
