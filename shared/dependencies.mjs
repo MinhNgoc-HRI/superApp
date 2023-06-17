@@ -31,32 +31,82 @@ const deps = {
       singleton: true,
       eager: true,
       requiredVersion: "^8.6.3",
+    },
+    "@react-navigation/native": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.1.6",
+    },
+    "@react-navigation/native-stack": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.9.12",
+    },
+    "@react-navigation/material-bottom-tabs": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.2.15",
+    },
+    "react-native-paper": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "5.8.0",
+    },
+    "@react-native-async-storage/async-storage": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "1.17.11",
+    },
+    "react-native-safe-area-context": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "4.5.3",
+    },
+    "react-native-screens": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "3.21.0",
+    },
+    "react-native-tab-view": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "3.5.1",
+    },
+    "react-native-vector-icons": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "9.2.0",
+    },
+    "@react-navigation/bottom-tabs": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.5.7",
+    },
+    "@react-navigation/material-top-tabs": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.6.2",
+    },
+    "react-native-gesture-handler": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "2.12.0",
+    },
+    "react-native-reanimated": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "3.3.0",
+    },
+    "@react-navigation/drawer": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.6.2",
+    },
+    "@react-navigation/stack": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.3.16",
     }
-    // "@react-navigation/native": {
-    //   singleton: true,
-    //   eager: true,
-    //   requiredVersion: "6.0.14",
-    // },
-    // "@react-navigation/native-stack": {
-    //   singleton: true,
-    //   eager: true,
-    //   requiredVersion: "6.9.2",
-    // },
-    // "@react-navigation/material-bottom-tabs": {
-    //   singleton: true,
-    //   eager: true,
-    //   requiredVersion: "6.2.5",
-    // },
-    // "react-native-paper": {
-    //   singleton: true,
-    //   eager: true,
-    //   requiredVersion: "5.0.0-rc.10",
-    // },
-    // "@react-native-async-storage/async-storage": {
-    //   singleton: true,
-    //   eager: true,
-    //   requiredVersion: "1.17.11",
-    // },
   };
   
   export { deps };

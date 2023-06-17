@@ -2,6 +2,18 @@ import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import * as Repack from '@callstack/repack';
 import {deps} from '../../shared/dependencies.mjs';
+
+// const fs = require('fs');
+
+// const srcPath = subdir => path.join(__dirname, 'src', subdir);
+// const getFilesAndDirectories = source =>
+//   fs.readdirSync(source, {withFileTypes: true}).map(dirent => dirent.name);
+// let absoluteImports = {};
+// getFilesAndDirectories('src').forEach(fileName => {
+//   const fileNameWithoutExtension = path.parse(fileName).name;
+//   absoluteImports[`@/${fileNameWithoutExtension}`] = srcPath(fileName);
+// });
+// console.log({absoluteImports});
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
  * https://github.com/callstack/repack/blob/main/README.md
@@ -87,7 +99,6 @@ export default env => {
        * in their `package.json` might not work correctly.
        */
       ...Repack.getResolveOptions(platform),
-
       /**
        * Uncomment this to ensure all `react-native*` imports will resolve to the same React Native
        * dependency. You might need it when using workspaces/monorepos or unconventional project
@@ -95,6 +106,9 @@ export default env => {
        */
       // alias: {
       //   'react-native': reactNativePath,
+      // },
+      // alias: {
+      //   ...absoluteImports,
       // },
     },
     /**
@@ -162,6 +176,13 @@ export default env => {
             /node_modules(.*[/\\])+@callstack\/repack/,
             /node_modules(.*[/\\])+pmn-rn-component/,
             /node_modules(.*[/\\])+react-native-fast-image/,
+            /node_modules(.*[/\\])+react-native-gesture-handler/,
+            /node_modules(.*[/\\])+react-native-reanimated/,
+            /node_modules(.*[/\\])+react-native-paper/,
+            /node_modules(.*[/\\])+react-native-safe-area-context/,
+            /node_modules(.*[/\\])+react-native-screens/,
+            /node_modules(.*[/\\])+react-native-tab-view/,
+            /node_modules(.*[/\\])+react-native-vector-icons/,
           ],
           use: 'babel-loader',
         },

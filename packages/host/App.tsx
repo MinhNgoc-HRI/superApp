@@ -1,8 +1,10 @@
 import React from 'react';
 
 import {ScriptManager, Script, Federated} from '@callstack/repack/client';
-import {Box, Text, fontSizeLine} from 'pmn-rn-component';
 import {Platform} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import MainStack from '@src/navigation';
+import defaultStyles from '@src/common/styles';
 
 // ScriptManager.shared.addResolver(async (scriptId, caller) => {
 //   // In dev mode, resolve script location to dev server.
@@ -32,21 +34,17 @@ const resolveURL = Federated.createURLResolver({
 });
 
 ScriptManager.shared.addResolver(async (scriptId, caller) => {
-  console.log('starting script');
   let url;
   console.log({scriptId, caller});
   if (caller === 'main') {
-    console.log('main');
     url = Script.getDevServerURL(scriptId);
   } else {
-    console.log('not main');
     url = resolveURL(scriptId, caller);
   }
 
   if (!url) {
     return undefined;
   }
-  console.log({url, nameUrl: caller});
   return {
     url,
     cache: false, // For development
@@ -55,27 +53,12 @@ ScriptManager.shared.addResolver(async (scriptId, caller) => {
     },
   };
 });
-// type ChuckType = {
-//   text: string;
-// };
-// const MyChunk = React.lazy<ComponentType<ChuckType>>(
-//   () => import(/* webpackChunkName: "chuck-demo" */ './src/Chucks'),
-// );
-const MyVideo = React.lazy(() => Federated.importModule('myVideo', './App'));
 
 const App = () => {
   return (
-    <Box flex={1} middle center>
-      <Text size={fontSizeLine(16)}>Hello</Text>
-      {/* <React.Suspense
-        fallback={<Text size={fontSizeLine(16)}>Loading...</Text>}>
-        <MyChunk text="Chuck" />
-      </React.Suspense> */}
-      <React.Suspense
-        fallback={<Text size={fontSizeLine(16)}>Loading...</Text>}>
-        <MyVideo />
-      </React.Suspense>
-    </Box>
+    <GestureHandlerRootView style={defaultStyles.flex_1}>
+      <MainStack />
+    </GestureHandlerRootView>
   );
 };
 
