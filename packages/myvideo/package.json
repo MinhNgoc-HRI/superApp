@@ -2,13 +2,18 @@
   "name": "myvideo",
   "version": "0.0.1",
   "private": true,
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "cd ios && pod install && cd ../ && react-native run-ios",
-    "start": "react-native start",
-    "start-pack": "react-native webpack-start --reset-cache --port 9000",
+    "start": "react-native webpack-start --port 9000 --reset-cache",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "typecheck": "tsc",
+    "bundle": "yarn bundle:ios && yarn bundle:android",
+    "bundle:ios": "react-native webpack-bundle --platform ios --entry-file index.js --dev false",
+    "bundle:android": "react-native webpack-bundle --platform android --entry-file index.js --dev false",
+    "pods": "(cd ios && pod install)"
   },
   "dependencies": {
     "react": "18.1.0",

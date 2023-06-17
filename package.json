@@ -3,9 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:host": "yarn workspace host run start",
+    "start:myvideo": "yarn workspace myvideo run start",
+    "run:host:ios": "yarn workspace host run ios",
+    "run:host:android": "yarn workspace host run android",
+    "run:myvideo:ios": "yarn workspace myvideo run ios",
+    "run:myvideo:android": "yarn workspace myvideo run android",
+    "pods": "yarn workspaces foreach run pods",
+    "start": "concurrently -P 'yarn:start:*(!standalone) {1}'",
+    "typecheck": "yarn workspaces foreach run typecheck",
+    "lint": "yarn workspaces foreach run lint",
+    "test": "yarn workspaces foreach run test",
+    "adbreverse": "adb reverse tcp:3000 tcp:3000 && adb reverse tcp:8081 tcp:8081 && adb reverse tcp:9000 tcp:9000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:9002 tcp:9002 && adb reverse tcp:9003 tcp:9003"
   },
   "author": "ngnm1009 - ngnm1009@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "packageManager": "yarn@3.6.0",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
 }
