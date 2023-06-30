@@ -1,7 +1,7 @@
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import * as Repack from '@callstack/repack';
-
+import {deps} from '../../shared/dependencies.mjs';
 /**
  * More documentation, installation, usage, motivation and differences with Metro is available at:
  * https://github.com/callstack/repack/blob/main/README.md
@@ -160,6 +160,15 @@ export default env => {
             /node_modules(.*[/\\])+metro/,
             /node_modules(.*[/\\])+abort-controller/,
             /node_modules(.*[/\\])+@callstack\/repack/,
+            /node_modules(.*[/\\])+pmn-rn-component/,
+            /node_modules(.*[/\\])+react-native-fast-image/,
+            /node_modules(.*[/\\])+react-native-gesture-handler/,
+            /node_modules(.*[/\\])+react-native-reanimated/,
+            /node_modules(.*[/\\])+react-native-paper/,
+            /node_modules(.*[/\\])+react-native-safe-area-context/,
+            /node_modules(.*[/\\])+react-native-screens/,
+            /node_modules(.*[/\\])+react-native-tab-view/,
+            /node_modules(.*[/\\])+react-native-vector-icons/,
           ],
           use: 'babel-loader',
         },
@@ -237,6 +246,7 @@ export default env => {
         exposes: {
           './App': './App.tsx',
         },
+        shared: deps,
       }),
     ],
   };

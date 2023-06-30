@@ -1,41 +1,20 @@
 import React from 'react';
 
-import {ScriptManager, Script, Federated} from '@callstack/repack/client';
-import {Platform} from 'react-native';
+import {ScriptManager, Federated, Script} from '@callstack/repack/client';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import MainStack from '@src/navigation';
 import defaultStyles from '@src/common/styles';
+import {Platform} from 'react-native';
 
-// ScriptManager.shared.addResolver(async (scriptId, caller) => {
-//   // In dev mode, resolve script location to dev server.
-//   console.log({caller, scriptId});
-//   if (__DEV__) {
-//     console.log({devUrl: Script.getDevServerURL(scriptId)});
-//     return {
-//       url: Script.getDevServerURL(scriptId),
-//       cache: false,
-//     };
-//   }
-//   console.log({
-//     prodUrl: Script.getRemoteURL(
-//       `http://somewhere-on-the-internet.com/${scriptId}`,
-//     ),
-//   });
-//   return {
-//     url: Script.getRemoteURL(
-//       `http://somewhere-on-the-internet.com/${scriptId}`,
-//     ),
-//   };
-// });
 const resolveURL = Federated.createURLResolver({
   containers: {
     myVideo: 'http://localhost:9000/[name][ext]',
+    // myVideo:
+    //   'https://github.com/ngnm1009/food-app/releases/download/myvideo/[name][ext]',
   },
 });
-
 ScriptManager.shared.addResolver(async (scriptId, caller) => {
   let url;
-  console.log({scriptId, caller});
   if (caller === 'main') {
     url = Script.getDevServerURL(scriptId);
   } else {
@@ -49,11 +28,17 @@ ScriptManager.shared.addResolver(async (scriptId, caller) => {
     url,
     cache: false, // For development
     query: {
-      platform: Platform.OS,
+      platform: Platform.OS, // For development
     },
   };
 });
-
+/*
+lắng nghe khi quá trình tải script hoàn hành
+*/
+ScriptManager.shared.on('resolved', ({scriptId, caller}) => {
+  console.log(`resolved ${scriptId} ${caller}`);
+  // do something
+});
 const App = () => {
   return (
     <GestureHandlerRootView style={defaultStyles.flex_1}>

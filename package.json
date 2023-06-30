@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "workspaces": [
-    "packages/*"
+    "packages/host",
+    "packages/myvideo",
+    "packages/serngnm"
   ],
   "scripts": {
     "start:host": "yarn workspace host run start",
     "start:myvideo": "yarn workspace myvideo run start",
+    "start:standalone:myvideo": "yarn workspace myvideo run start:standalone",
+    "start:serngnm": "yarn workspace serngnm run start",
     "run:host:ios": "yarn workspace host run ios",
     "run:host:android": "yarn workspace host run android",
     "run:myvideo:ios": "yarn workspace myvideo run ios",
@@ -18,6 +22,7 @@
     "typecheck": "yarn workspaces foreach run typecheck",
     "lint": "yarn workspaces foreach run lint",
     "test": "yarn workspaces foreach run test",
+    "bundle:myvideo:ios": "yarn workspace myvideo run bundle:ios",
     "adbreverse": "adb reverse tcp:3000 tcp:3000 && adb reverse tcp:8081 tcp:8081 && adb reverse tcp:9000 tcp:9000 && adb reverse tcp:9001 tcp:9001 && adb reverse tcp:9002 tcp:9002 && adb reverse tcp:9003 tcp:9003"
   },
   "author": "ngnm1009 - ngnm1009@gmail.com",
