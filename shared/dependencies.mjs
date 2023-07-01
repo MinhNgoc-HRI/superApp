@@ -25,7 +25,7 @@ const deps = {
     "pmn-rn-component": {
       singleton: true,
       eager: true,
-      requiredVersion: "^0.1.0",
+      requiredVersion: "^0.1.3",
     },
     "react-native-fast-image": {
       singleton: true,

@@ -1,10 +1,10 @@
 import React, {forwardRef, memo, useCallback} from 'react';
 import {RootStackScreenProps} from '@src/navigation/types';
-import {Box, heightLize, widthLize} from 'pmn-rn-component';
+import {Box, heightLize, widthLize, Thumb} from 'pmn-rn-component';
 import Carousel from 'react-native-reanimated-carousel';
 import {DIMENSION} from '@src/common/dimension';
 import {CarouselRenderItemInfo} from 'react-native-reanimated-carousel/lib/typescript/types';
-import {Image, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {useSharedValue} from 'react-native-reanimated';
 import {PaginationItem} from '@src/features/Onbroad/components/PaginationItem';
 import DefaultActionBar from '@src/components/DefaultActionBar';
@@ -20,7 +20,7 @@ const Onbroad = forwardRef<OOnbroad, IOnbroad>(() => {
       const {item, index} = info;
       return (
         <Box key={index} width={DIMENSION.width} middle center>
-          <Image
+          <Thumb
             source={require(`../../assets/images/${item.image}`)}
             style={styles.image}
             resizeMode="contain"
@@ -44,7 +44,7 @@ const Onbroad = forwardRef<OOnbroad, IOnbroad>(() => {
         }}
         style={styles.carousel}
       />
-      <Box flex={1} row middle marginTop={heightLize(24)}>
+      <Box flex={1} row middle center>
         {ONBROAD_DATA.map((item, index) => (
           <PaginationContent
             animValue={progressValue}
@@ -55,7 +55,7 @@ const Onbroad = forwardRef<OOnbroad, IOnbroad>(() => {
           />
         ))}
       </Box>
-      <Box flex={1} row middle marginTop={heightLize(24)}>
+      <Box flex={1} row middle center marginTop={heightLize(24)}>
         {ONBROAD_DATA.map((_page, index) => (
           <PaginationItem
             backgroundColor={'#fff'}
