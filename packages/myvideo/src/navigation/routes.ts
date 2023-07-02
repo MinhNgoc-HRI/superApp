@@ -6,6 +6,7 @@ type Entries<T> = {
 
 export const routerMain: Entries<MainStackParamList> = {
   Onbroad: 'Onbroad',
+  Login: 'Login',
   Home: 'Home',
   NotFound: 'NotFound',
   PostDetails: 'PostDetails',

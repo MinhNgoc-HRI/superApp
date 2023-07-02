@@ -2,6 +2,7 @@ import type {StackScreenProps} from '@react-navigation/stack';
 
 export type MainStackParamList = {
   Onbroad: undefined;
+  Login: undefined;
   Home: undefined;
   PostDetails: undefined;
   NotFound: undefined;
