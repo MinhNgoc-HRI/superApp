@@ -21,8 +21,12 @@ const HomeScreen = React.forwardRef<OHomeScreen, IHomeScreen>((_props, ref) => {
     <Box flex={1}>
       <ErrorBoundary name="My Video">
         <React.Suspense
-          fallback={<Text size={fontSizeLine(16)}>Loading...</Text>}>
-          <MyVideo title="Hello World" />
+          fallback={
+            <Box flex={1} middle center>
+              <Text size={fontSizeLine(16)}>Loading...</Text>
+            </Box>
+          }>
+          <MyVideo />
         </React.Suspense>
       </ErrorBoundary>
     </Box>

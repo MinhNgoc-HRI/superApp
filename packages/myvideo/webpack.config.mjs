@@ -153,6 +153,7 @@ export default env => {
             /node_modules(.*[/\\])+react\//,
             /node_modules(.*[/\\])+react-native/,
             /node_modules(.*[/\\])+@react-native/,
+            /node_modules(.*[/\\])+react-freeze/,
             /node_modules(.*[/\\])+@react-navigation/,
             /node_modules(.*[/\\])+@react-native-community/,
             /node_modules(.*[/\\])+@expo/,
@@ -161,14 +162,17 @@ export default env => {
             /node_modules(.*[/\\])+abort-controller/,
             /node_modules(.*[/\\])+@callstack\/repack/,
             /node_modules(.*[/\\])+pmn-rn-component/,
-            /node_modules(.*[/\\])+react-native-fast-image/,
-            /node_modules(.*[/\\])+react-native-gesture-handler/,
-            /node_modules(.*[/\\])+react-native-reanimated/,
-            /node_modules(.*[/\\])+react-native-paper/,
-            /node_modules(.*[/\\])+react-native-safe-area-context/,
-            /node_modules(.*[/\\])+react-native-screens/,
-            /node_modules(.*[/\\])+react-native-tab-view/,
-            /node_modules(.*[/\\])+react-native-vector-icons/,
+            // /node_modules(.*[/\\])+react-native-fast-image/,
+            // /node_modules(.*[/\\])+react-native-gesture-handler/,
+            // /node_modules(.*[/\\])+react-native-reanimated/,
+            // /node_modules(.*[/\\])+react-native-paper/,
+            // /node_modules(.*[/\\])+react-native-safe-area-context/,
+            // /node_modules(.*[/\\])+react-native-screens/,
+            // /node_modules(.*[/\\])+react-native-tab-view/,
+            // /node_modules(.*[/\\])+react-native-vector-icons/,
+            // /node_modules(.*[/\\])+react-native-keyboard-aware-scroll-view/,
+            // /node_modules(.*[/\\])+react-native-reanimated-carousel/,
+            /node_modules(.*[/\\])+react-native-svg/,
           ],
           use: 'babel-loader',
         },
@@ -203,10 +207,17 @@ export default env => {
          * ```
          */
         {
-          test: Repack.getAssetExtensionsRegExp(Repack.ASSET_EXTENSIONS),
+          test: Repack.getAssetExtensionsRegExp(
+            Repack.ASSET_EXTENSIONS.filter(ext => ext !== 'svg'),
+          ),
+          // exclude: [
+          //   path.join(dirname, 'src/assets/images'),
+          //   path.join(dirname, 'src/assets/icons'),
+          // ],
           use: {
             loader: '@callstack/repack/assets-loader',
             options: {
+              inline: true,
               platform,
               devServerEnabled: Boolean(devServer),
               /**
@@ -215,8 +226,36 @@ export default env => {
                * By default all images are scalable.
                */
               scalableAssetExtensions: Repack.SCALABLE_ASSETS,
+              // remote: {
+              //   enabled: true,
+              //   publicPath: 'http://localhost:3000',
+              // },
             },
           },
+        },
+        // {
+        //   test: /\.[jt]sx?$/,
+        //   include: [/src\/assets\/icons\/IconFB/],
+        //   use: {
+        //     loader: '@svgr/webpack',
+        //     options: {
+        //       native: true,
+        //       dimensions: false,
+        //     },
+        //   },
+        // },
+        {
+          test: /\.svg$/,
+          type: 'asset/inline',
+          use: [
+            {
+              loader: '@svgr/webpack',
+              options: {
+                native: true,
+                dimensions: false,
+              },
+            },
+          ],
         },
       ],
     },

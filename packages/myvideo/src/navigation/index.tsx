@@ -16,7 +16,7 @@ const Navigator: React.FC<any> = () => {
     },
   };
   return (
-    <NavigationContainer ref={refNavigation} linking={linking}>
+    <NavigationContainer ref={refNavigation} linking={linking} independent>
       <MainStack />
     </NavigationContainer>
   );

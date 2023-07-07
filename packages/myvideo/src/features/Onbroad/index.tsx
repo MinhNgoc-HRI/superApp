@@ -52,6 +52,7 @@ const Onbroad = forwardRef<OOnbroad, IOnbroad>((props, ref) => {
           width={DIMENSION.width}
           autoPlay
           loop
+          autoPlayInterval={2000}
           onProgressChange={(_, absoluteProgress) => {
             progressValue.value = absoluteProgress;
           }}

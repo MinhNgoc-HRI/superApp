@@ -167,6 +167,7 @@ export default env => {
             /node_modules(.*[/\\])+react\//,
             /node_modules(.*[/\\])+react-native/,
             /node_modules(.*[/\\])+@react-native/,
+            /node_modules(.*[/\\])+react-freeze/,
             /node_modules(.*[/\\])+@react-navigation/,
             /node_modules(.*[/\\])+@react-native-community/,
             /node_modules(.*[/\\])+@expo/,
@@ -183,8 +184,9 @@ export default env => {
             /node_modules(.*[/\\])+react-native-screens/,
             /node_modules(.*[/\\])+react-native-tab-view/,
             /node_modules(.*[/\\])+react-native-vector-icons/,
+            /node_modules(.*[/\\])+react-native-svg/,
           ],
-          use: 'babel-loader',
+          use: ['babel-loader'],
         },
         /**
          * Here you can adjust loader that will process your files.
@@ -206,6 +208,18 @@ export default env => {
             },
           },
         },
+        {
+          test: /\.svg$/,
+          use: [
+            {
+              loader: '@svgr/webpack',
+              options: {
+                native: true,
+                dimensions: false,
+              },
+            },
+          ],
+        },
         /**
          * This loader handles all static assets (images, video, audio and others), so that you can
          * use (reference) them inside your application.
@@ -218,9 +232,11 @@ export default env => {
          */
         {
           test: Repack.getAssetExtensionsRegExp(Repack.ASSET_EXTENSIONS),
+          // include: [path.join(dirname, 'src/assets')],
           use: {
             loader: '@callstack/repack/assets-loader',
             options: {
+              inline: true,
               platform,
               devServerEnabled: Boolean(devServer),
               /**
@@ -229,6 +245,10 @@ export default env => {
                * By default all images are scalable.
                */
               scalableAssetExtensions: Repack.SCALABLE_ASSETS,
+              // remote: {
+              //   enabled: true,
+              //   publicPath: 'http://localhost:3000/name=src/bundle/assets',
+              // },
             },
           },
         },
@@ -254,27 +274,27 @@ export default env => {
           sourceMapFilename,
           assetsPath,
         },
-        extraChunks: [
-          // {
-          //   // Make all student related chunks local.
-          //   include: ['chuck-demo', /^chuck-demo-.+$/],
-          //   type: 'local',
-          // },
-          // {
-          //   // Anything not student related should be remote and stored under
-          //   // `<projectRoot>/build/output/<platform>/remotes/core`.
-          //   exclude: /^chuck-demo-.+$/,
-          //   type: 'remote',
-          //   outputPath: path.join('build/output', platform, 'remotes/core'),
-          // },
-          // {
-          //   // All teacher related chunks should be remote and stored under
-          //   // `<projectRoot>/build/output/<platform>/remotes/teacher`.
-          //   test: /^teacher.*$/,
-          //   type: 'remote',
-          //   outputPath: path.join('build/output', platform, 'remotes/teacher'),
-          // },
-        ],
+        // extraChunks: [
+        // {
+        //   // Make all student related chunks local.
+        //   include: ['chuck-demo', /^chuck-demo-.+$/],
+        //   type: 'local',
+        // },
+        // {
+        //   // Anything not student related should be remote and stored under
+        //   // `<projectRoot>/build/output/<platform>/remotes/core`.
+        //   exclude: /^chuck-demo-.+$/,
+        //   type: 'remote',
+        //   outputPath: path.join('build/output', platform, 'remotes/core'),
+        // },
+        // {
+        //   // All teacher related chunks should be remote and stored under
+        //   // `<projectRoot>/build/output/<platform>/remotes/teacher`.
+        //   test: /^teacher.*$/,
+        //   type: 'remote',
+        //   outputPath: path.join('build/output', platform, 'remotes/teacher'),
+        // },
+        // ],
       }),
       new Repack.plugins.ModuleFederationPlugin({
         name: 'host',

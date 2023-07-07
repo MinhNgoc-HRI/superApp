@@ -11,6 +11,7 @@ const resolveURL = Federated.createURLResolver({
     myVideo: 'http://localhost:9000/[name][ext]',
     // myVideo:
     //   'https://github.com/ngnm1009/food-app/releases/download/myvideo/[name][ext]',
+    // myVideo: 'http://localhost:3000/name=[name][ext]',
   },
 });
 ScriptManager.shared.addResolver(async (scriptId, caller) => {

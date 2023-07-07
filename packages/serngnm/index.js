@@ -3,16 +3,13 @@ const fs = require('fs');
 const app = express()
 const port = 3000
 
-app.get('/myVideo.container.bundle', (req, res) => {
-  console.log('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
-  console.log(req.url)
-  console.log(req.query)
-  console.log(req.headers)
-  const data = fs.readFileSync(
-    __dirname +'/assets/myvideo.container.bundle','utf8',
-  );
-  
-  res.send(data);
+app.get('/:name', (req, res) => {
+  // https://github.com/ngnm1009/food-app/releases/download/myvideo/App_tsx.chunk.bundle?platform=ios
+  const {name} = req.params
+  console.log({name})
+  const file = `src/bundle/${name.replace('name=','')}`;
+  console.log({file})
+  res.download(file); // Set disposition and send it.
 });
 
 app.listen(port, () => {

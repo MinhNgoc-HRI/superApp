@@ -35,7 +35,7 @@ const deps = {
     "@react-navigation/native": {
       singleton: true,
       eager: true,
-      requiredVersion: "6.1.6",
+      requiredVersion: "^6.1.6",
     },
     "@react-navigation/native-stack": {
       singleton: true,
@@ -50,62 +50,92 @@ const deps = {
     "react-native-paper": {
       singleton: true,
       eager: true,
-      requiredVersion: "5.8.0",
+      requiredVersion: "^5.8.0",
     },
     "@react-native-async-storage/async-storage": {
       singleton: true,
       eager: true,
-      requiredVersion: "1.17.11",
+      requiredVersion: "^1.17.11",
     },
     "react-native-safe-area-context": {
       singleton: true,
       eager: true,
-      requiredVersion: "4.5.3",
+      requiredVersion: "^4.5.3",
     },
     "react-native-screens": {
       singleton: true,
       eager: true,
-      requiredVersion: "3.21.0",
+      requiredVersion: "^3.21.0",
     },
     "react-native-tab-view": {
       singleton: true,
       eager: true,
-      requiredVersion: "3.5.1",
+      requiredVersion: "^3.5.1",
     },
     "react-native-vector-icons": {
       singleton: true,
       eager: true,
-      requiredVersion: "9.2.0",
+      requiredVersion: "^9.2.0",
     },
     "@react-navigation/bottom-tabs": {
       singleton: true,
       eager: true,
-      requiredVersion: "6.5.7",
+      requiredVersion: "^6.5.7",
     },
     "@react-navigation/material-top-tabs": {
       singleton: true,
       eager: true,
-      requiredVersion: "6.6.2",
+      requiredVersion: "^6.6.2",
     },
     "react-native-gesture-handler": {
       singleton: true,
       eager: true,
-      requiredVersion: "2.12.0",
+      requiredVersion: "^2.12.0",
     },
     "react-native-reanimated": {
       singleton: true,
       eager: true,
-      requiredVersion: "3.3.0",
+      requiredVersion: "2.17.0",
     },
     "@react-navigation/drawer": {
       singleton: true,
       eager: true,
-      requiredVersion: "6.6.2",
+      requiredVersion: "^6.6.2",
     },
     "@react-navigation/stack": {
       singleton: true,
       eager: true,
-      requiredVersion: "6.3.16",
+      requiredVersion: "^6.3.16",
+    },
+    "react-native-keyboard-aware-scroll-view": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^0.9.5",
+    },
+    "react-native-reanimated-carousel": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "3.4.0",
+    },
+    "react-native-svg": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "13.9.0",
+    },
+    "react-native-tab-view": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^3.5.1",
+    },
+    "react-native-vector-icons": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^9.2.0",
+    },
+    "@react-native-masked-view/masked-view": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^0.2.9",
     }
   };
   
