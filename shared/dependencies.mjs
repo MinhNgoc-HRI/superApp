@@ -90,7 +90,7 @@ const deps = {
     "react-native-gesture-handler": {
       singleton: true,
       eager: true,
-      requiredVersion: "^2.12.0",
+      requiredVersion: "2.9.0",
     },
     "react-native-reanimated": {
       singleton: true,
@@ -120,7 +120,7 @@ const deps = {
     "react-native-svg": {
       singleton: true,
       eager: true,
-      requiredVersion: "13.9.0",
+      requiredVersion: "13.7.0",
     },
     "react-native-tab-view": {
       singleton: true,
@@ -136,6 +136,16 @@ const deps = {
       singleton: true,
       eager: true,
       requiredVersion: "^0.2.9",
+    },
+    "react-native-portalize": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^1.0.7",
+    },
+    "react-native-modalize": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^2.1.1",
     }
   };
   

@@ -172,7 +172,7 @@ export default env => {
             // /node_modules(.*[/\\])+react-native-vector-icons/,
             // /node_modules(.*[/\\])+react-native-keyboard-aware-scroll-view/,
             // /node_modules(.*[/\\])+react-native-reanimated-carousel/,
-            /node_modules(.*[/\\])+react-native-svg/,
+            // /node_modules(.*[/\\])+react-native-svg/,
           ],
           use: 'babel-loader',
         },
@@ -246,7 +246,7 @@ export default env => {
         // },
         {
           test: /\.svg$/,
-          type: 'asset/inline',
+          // type: 'asset/reomote',
           use: [
             {
               loader: '@svgr/webpack',

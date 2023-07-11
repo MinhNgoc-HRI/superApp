@@ -13,7 +13,6 @@ import React from 'react';
 import {StatusBar, StyleSheet, TextStyle} from 'react-native';
 import HeaderTitle from '../Header/HeaderTitle';
 import IconArrowLeft from '@src/assets/icons/IconArrowLeft';
-
 interface IProps {
   title?: string;
   titleColor?: string;
@@ -83,6 +82,11 @@ const DefaultActionBar = React.forwardRef<RefView, IProps>(
     const renderLeftIcon = () => {
       switch (leftIconType) {
         case 'back':
+          // <IconBackSVG
+          //   width={widthLize(sizeLeftIcon)}
+          //   height={heightLize(sizeLeftIcon)}
+          //   color={colorLeftIcon}
+          // />
           return (
             <IconArrowLeft
               width={widthLize(sizeLeftIcon)}
@@ -91,6 +95,7 @@ const DefaultActionBar = React.forwardRef<RefView, IProps>(
             />
           );
         case 'none':
+          return null;
         default:
           return null;
       }
