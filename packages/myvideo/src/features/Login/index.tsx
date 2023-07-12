@@ -21,9 +21,11 @@ import defaultStyles from '@src/common/styles';
 import PopupTerm, {OPopupTerm} from '@src/features/Login/components/PopupTerm';
 import {TERM_DATA} from '@src/mock';
 import PopupSendOTP, {OPopupSendOTP} from './components/PopupSendOTP';
+import {routerMain} from '@src/navigation/routes';
 interface ILogin extends RootStackScreenProps<'Login'> {}
 type OLogin = {};
-const Login = forwardRef<OLogin, ILogin>((_props, _ref) => {
+const Login = forwardRef<OLogin, ILogin>((props, _ref) => {
+  const {navigation} = props;
   const refPopupTerm = useRef<OPopupTerm>(null);
   const refPopupSendOTP = useRef<OPopupSendOTP>(null);
   const [form, setForm] = useState({
@@ -176,6 +178,7 @@ const Login = forwardRef<OLogin, ILogin>((_props, _ref) => {
           'Tính năng này hiện tại dành cho thuê bao Viettel, để đăng ký/lấy mật khẩu bạn vui lòng soạn:'
         }
         sms={'MK gửi 9062'}
+        onPress={() => navigation.navigate(routerMain.AccountLink)}
       />
     </Box>
   );

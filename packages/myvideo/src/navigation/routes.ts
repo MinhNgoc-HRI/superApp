@@ -8,6 +8,9 @@ export const routerMain: Entries<MainStackParamList> = {
   Onbroad: 'Onbroad',
   Login: 'Login',
   Home: 'Home',
+  AccountLink: 'AccountLink',
+  OTP: 'OTP',
   NotFound: 'NotFound',
   PostDetails: 'PostDetails',
+  BottomTab: 'BottomTab',
 };

@@ -116,11 +116,7 @@ const PopupSendOTP = forwardRef<OPopupSendOTP, IPopupSendOTP>(
             middle
             center
             style={[StyleSheet.absoluteFillObject, containerStyled]}>
-            <Box
-              width={DIMENSION.width * 0.92}
-              //   height={DIMENSION.height * 0.8}
-              color={'#141414'}
-              radius={10}>
+            <Box width={DIMENSION.width * 0.92} color={'#141414'} radius={10}>
               <Text
                 paddingVertical={heightLize(16)}
                 textAlign="center"
@@ -177,7 +173,10 @@ const PopupSendOTP = forwardRef<OPopupSendOTP, IPopupSendOTP>(
                 </TouchRippleSingle>
                 <Box width={widthLize(10)} />
                 <TouchRippleSingle
-                  onPress={onPress}
+                  onPress={() => {
+                    onPress?.();
+                    close();
+                  }}
                   touchProps={{
                     style: defaultStyles.flex_1,
                   }}>

@@ -13,6 +13,10 @@ export type BottomTabParamList = {
 export type MainStackParamList = {
   Onbroad: undefined;
   Login: undefined;
+  AccountLink: undefined;
+  OTP: {
+    phone: string;
+  };
   Home: undefined;
   PostDetails: undefined;
   NotFound: undefined;
