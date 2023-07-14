@@ -5,7 +5,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import MainStack from '@src/navigation';
 import defaultStyles from '@src/common/styles';
 import {Platform} from 'react-native';
-
+import 'react-native-svg';
 const resolveURL = Federated.createURLResolver({
   containers: {
     myVideo: 'http://localhost:9000/[name][ext]',

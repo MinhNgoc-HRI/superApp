@@ -1,5 +1,5 @@
 import React, {forwardRef, useEffect, useImperativeHandle} from 'react';
-import {RootStackScreenProps} from '@src/navigation/types';
+import {MainStackScreenProps} from '@src/navigation/types';
 import {
   Box,
   heightLize,
@@ -14,7 +14,7 @@ import CodeInputAnimated from '@src/components/CodeInputAnimated';
 import {useCountdown} from '@src/hooks/useCountdown';
 import {AlertProvider} from '@src/components/Alert';
 
-interface IOTP extends RootStackScreenProps<'OTP'> {}
+interface IOTP extends MainStackScreenProps<'OTP'> {}
 type OOTP = {};
 const OTP = forwardRef<OOTP, IOTP>((props, ref) => {
   const {phone} = props.route.params;

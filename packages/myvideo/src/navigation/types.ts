@@ -4,11 +4,12 @@ import {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import type {StackScreenProps} from '@react-navigation/stack';
-export type BottomTabParamList = {
-  Profile: {
-    name: string;
-  };
-  Gift: undefined;
+export type BottomStackParamList = {
+  Home: undefined;
+  Short: undefined;
+  Livestream: undefined;
+  Favorite: undefined;
+  Profile: undefined;
 };
 export type MainStackParamList = {
   Onbroad: undefined;
@@ -17,19 +18,17 @@ export type MainStackParamList = {
   OTP: {
     phone: string;
   };
-  Home: undefined;
-  PostDetails: undefined;
   NotFound: undefined;
-  BottomTab: NavigatorScreenParams<BottomTabParamList>;
+  BottomTab: NavigatorScreenParams<BottomStackParamList>;
 };
 
 export type RoutesType = MainStackParamList;
-export type RootStackScreenProps<T extends keyof MainStackParamList> =
+export type MainStackScreenProps<T extends keyof MainStackParamList> =
   StackScreenProps<MainStackParamList, T>;
-export type BottomTabNGScreenProps<T extends keyof BottomTabParamList> =
+export type BottomStackScreenProps<T extends keyof BottomStackParamList> =
   CompositeScreenProps<
-    BottomTabScreenProps<BottomTabParamList, T>,
-    RootStackScreenProps<keyof MainStackParamList>
+    BottomTabScreenProps<BottomStackParamList, T>,
+    MainStackScreenProps<keyof MainStackParamList>
   >;
 
 declare global {

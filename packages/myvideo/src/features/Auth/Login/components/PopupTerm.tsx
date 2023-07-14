@@ -80,7 +80,7 @@ const PopupTerm = forwardRef<OPopupTerm, IPopupTerm>((props, refPopupTerm) => {
   }, [active]);
   useEffect(() => {
     opacity.value = withTiming(active ? 1 : 0, {
-      duration: 600,
+      duration: 300,
       easing: Easing.ease,
     });
   }, [active, opacity]);

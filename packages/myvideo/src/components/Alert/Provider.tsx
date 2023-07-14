@@ -23,7 +23,7 @@ const Provider = React.forwardRef<AlertAction, any>(({children}, ref) => {
   };
 
   return (
-    <Box flex={1}>
+    <Box flex={1} color="transparent">
       {children}
       {alert.length > 0
         ? alert.map(item => (

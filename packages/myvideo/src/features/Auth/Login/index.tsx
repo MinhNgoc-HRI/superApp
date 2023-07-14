@@ -1,5 +1,5 @@
 import React, {forwardRef, memo, useMemo, useRef, useState} from 'react';
-import {RootStackScreenProps} from '@src/navigation/types';
+import {MainStackScreenProps} from '@src/navigation/types';
 import DefaultActionBar from '@src/components/DefaultActionBar';
 import {
   Box,
@@ -18,11 +18,15 @@ import IconFB from '@src/assets/icons/IconFB';
 import IconApple from '@src/assets/icons/IconApple';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import defaultStyles from '@src/common/styles';
-import PopupTerm, {OPopupTerm} from '@src/features/Login/components/PopupTerm';
+import PopupTerm, {
+  OPopupTerm,
+} from '@src/features/Auth/Login/components/PopupTerm';
 import {TERM_DATA} from '@src/mock';
-import PopupSendOTP, {OPopupSendOTP} from './components/PopupSendOTP';
+import PopupSendOTP, {
+  OPopupSendOTP,
+} from '@src/features/Auth/Login/components/PopupSendOTP';
 import {routerMain} from '@src/navigation/routes';
-interface ILogin extends RootStackScreenProps<'Login'> {}
+interface ILogin extends MainStackScreenProps<'Login'> {}
 type OLogin = {};
 const Login = forwardRef<OLogin, ILogin>((props, _ref) => {
   const {navigation} = props;

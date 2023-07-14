@@ -21,7 +21,6 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import {DIMENSION} from '@src/common/dimension';
-import {Portal} from 'react-native-portalize';
 
 interface IProps {
   value: AlertContent;
@@ -169,53 +168,51 @@ const Alert: React.FC<IProps> = ({value, onClose}) => {
     return <Box />;
   };
   return (
-    <Portal>
+    <BoxAnimated
+      pointerEvents="box-none"
+      width={DIMENSION.width}
+      height={DIMENSION.height}
+      style={[StyleSheet.absoluteFillObject, overlayStyled]}>
+      <TouchableWithoutFeedback onPress={() => cancelable && close()}>
+        <BoxAnimated
+          width={DIMENSION.width}
+          height={DIMENSION.height}
+          style={[StyleSheet.absoluteFillObject, containerStyled]}
+        />
+      </TouchableWithoutFeedback>
       <BoxAnimated
         pointerEvents="box-none"
         width={DIMENSION.width}
         height={DIMENSION.height}
-        style={overlayStyled}>
-        <TouchableWithoutFeedback onPress={() => cancelable && close()}>
-          <BoxAnimated
-            width={DIMENSION.width}
-            height={DIMENSION.height}
-            style={[StyleSheet.absoluteFillObject, containerStyled]}
-          />
-        </TouchableWithoutFeedback>
-        <BoxAnimated
-          pointerEvents="box-none"
-          width={DIMENSION.width}
-          height={DIMENSION.height}
-          middle
-          center
-          style={[StyleSheet.absoluteFillObject, containerStyled]}>
-          <Box
-            width={DIMENSION.width * 0.92}
-            color={'#141414'}
-            radius={10}
-            padding={(widthLize(40), heightLize(20))}>
-            <Text
-              textAlign="center"
-              weight="800"
-              size={fontSizeLine(16)}
-              lineHeight={fontSizeLine(30)}
-              color={'#fff'}>
-              {title}
-            </Text>
-            <Box height={heightLize(20)} />
-            <Text
-              textAlign="center"
-              size={fontSizeLine(16)}
-              lineHeight={fontSizeLine(20)}
-              color={'#fff'}>
-              {content}
-            </Text>
-            <Box height={heightLize(20)} />
-            {renderAction()}
-          </Box>
-        </BoxAnimated>
+        middle
+        center
+        style={[StyleSheet.absoluteFillObject, containerStyled]}>
+        <Box
+          width={DIMENSION.width * 0.92}
+          color={'#141414'}
+          radius={10}
+          padding={(widthLize(40), heightLize(20))}>
+          <Text
+            textAlign="center"
+            weight="800"
+            size={fontSizeLine(16)}
+            lineHeight={fontSizeLine(30)}
+            color={'#fff'}>
+            {title}
+          </Text>
+          <Box height={heightLize(20)} />
+          <Text
+            textAlign="center"
+            size={fontSizeLine(16)}
+            lineHeight={fontSizeLine(20)}
+            color={'#fff'}>
+            {content}
+          </Text>
+          <Box height={heightLize(20)} />
+          {renderAction()}
+        </Box>
       </BoxAnimated>
-    </Portal>
+    </BoxAnimated>
   );
 };
 

@@ -4,7 +4,7 @@ import React, {
   useImperativeHandle,
   useState,
 } from 'react';
-import {RootStackScreenProps} from '@src/navigation/types';
+import {MainStackScreenProps} from '@src/navigation/types';
 import {
   Box,
   heightLize,
@@ -18,7 +18,7 @@ import ImgPhone from '@src/assets/icons/ImgPhone';
 import Input from '@src/components/Input';
 import {routerMain} from '@src/navigation/routes';
 
-interface IAccountLink extends RootStackScreenProps<'AccountLink'> {}
+interface IAccountLink extends MainStackScreenProps<'AccountLink'> {}
 type OAccountLink = {};
 const AccountLink = forwardRef<OAccountLink, IAccountLink>((props, ref) => {
   const {navigation} = props;

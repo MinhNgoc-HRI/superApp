@@ -1,4 +1,4 @@
-import {MainStackParamList} from './types';
+import {BottomStackParamList, MainStackParamList} from './types';
 
 type Entries<T> = {
   [K in keyof T]: K;
@@ -7,10 +7,15 @@ type Entries<T> = {
 export const routerMain: Entries<MainStackParamList> = {
   Onbroad: 'Onbroad',
   Login: 'Login',
-  Home: 'Home',
   AccountLink: 'AccountLink',
   OTP: 'OTP',
   NotFound: 'NotFound',
-  PostDetails: 'PostDetails',
   BottomTab: 'BottomTab',
+};
+export const routerBottomTab: Entries<BottomStackParamList> = {
+  Home: 'Home',
+  Short: 'Short',
+  Livestream: 'Livestream',
+  Profile: 'Profile',
+  Favorite: 'Favorite',
 };

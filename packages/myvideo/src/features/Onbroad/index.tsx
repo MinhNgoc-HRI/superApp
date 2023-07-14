@@ -1,5 +1,5 @@
 import React, {forwardRef, memo, useCallback, useImperativeHandle} from 'react';
-import {RootStackScreenProps} from '@src/navigation/types';
+import {MainStackScreenProps} from '@src/navigation/types';
 import {
   Box,
   heightLize,
@@ -19,9 +19,9 @@ import {PaginationItem} from '@src/features/Onbroad/components/PaginationItem';
 import DefaultActionBar from '@src/components/DefaultActionBar';
 import {ONBROAD_DATA, OnbroadType} from '@src/mock';
 import {PaginationContent} from '@src/features/Onbroad/components/PaginationContent';
-import {routerMain} from '@src/navigation/routes';
+import {routerBottomTab, routerMain} from '@src/navigation/routes';
 
-interface IOnbroad extends RootStackScreenProps<'Onbroad'> {}
+interface IOnbroad extends MainStackScreenProps<'Onbroad'> {}
 type OOnbroad = {};
 const Onbroad = forwardRef<OOnbroad, IOnbroad>((props, ref) => {
   const {navigation} = props;
@@ -83,7 +83,11 @@ const Onbroad = forwardRef<OOnbroad, IOnbroad>((props, ref) => {
       </Box>
       <Box marginBottom={getOffset().bottom_without_margin}>
         <TouchRippleSingle
-          onPress={() => navigation.navigate(routerMain.Login)}>
+          onPress={() =>
+            navigation.navigate(routerMain.BottomTab, {
+              screen: routerBottomTab.Home,
+            })
+          }>
           <Box
             width={widthLize(300)}
             height={heightLize(40)}
