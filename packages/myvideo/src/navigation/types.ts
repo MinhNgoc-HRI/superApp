@@ -1,11 +1,21 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {MaterialTopTabScreenProps} from '@react-navigation/material-top-tabs';
 import {
   CompositeScreenProps,
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import type {StackScreenProps} from '@react-navigation/stack';
+export type TopStackParamList = {
+  Explore: undefined;
+  Suggest: undefined;
+  Start: undefined;
+  Entertainment: undefined;
+  Music: undefined;
+  TVShow: undefined;
+  Sport: undefined;
+};
 export type BottomStackParamList = {
-  Home: undefined;
+  Home: NavigatorScreenParams<TopStackParamList>;
   Short: undefined;
   Livestream: undefined;
   Favorite: undefined;
@@ -30,7 +40,14 @@ export type BottomStackScreenProps<T extends keyof BottomStackParamList> =
     BottomTabScreenProps<BottomStackParamList, T>,
     MainStackScreenProps<keyof MainStackParamList>
   >;
-
+export type TopStackScreenProp<T extends keyof TopStackParamList> =
+  CompositeScreenProps<
+    MaterialTopTabScreenProps<TopStackParamList, T>,
+    CompositeScreenProps<
+      BottomStackScreenProps<keyof BottomStackParamList>,
+      MainStackScreenProps<keyof MainStackParamList>
+    >
+  >;
 declare global {
   namespace ReactNavigation {
     interface RootParamList extends MainStackParamList {}

@@ -1,4 +1,8 @@
-import {BottomStackParamList, MainStackParamList} from './types';
+import {
+  BottomStackParamList,
+  MainStackParamList,
+  TopStackParamList,
+} from './types';
 
 type Entries<T> = {
   [K in keyof T]: K;
@@ -18,4 +22,13 @@ export const routerBottomTab: Entries<BottomStackParamList> = {
   Livestream: 'Livestream',
   Profile: 'Profile',
   Favorite: 'Favorite',
+};
+export const routerTopTab: Entries<TopStackParamList> = {
+  Suggest: 'Suggest',
+  Start: 'Start',
+  Entertainment: 'Entertainment',
+  Music: 'Music',
+  TVShow: 'TVShow',
+  Sport: 'Sport',
+  Explore: 'Explore',
 };

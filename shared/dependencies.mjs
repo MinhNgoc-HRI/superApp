@@ -50,7 +50,7 @@ const deps = {
     "react-native-paper": {
       singleton: true,
       eager: true,
-      requiredVersion: "^5.8.0",
+      requiredVersion: "^5.9.1",
     },
     "@react-native-async-storage/async-storage": {
       singleton: true,
@@ -70,7 +70,7 @@ const deps = {
     "react-native-tab-view": {
       singleton: true,
       eager: true,
-      requiredVersion: "^3.5.1",
+      requiredVersion: "^3.5.2",
     },
     "react-native-vector-icons": {
       singleton: true,
@@ -122,11 +122,6 @@ const deps = {
       eager: true,
       requiredVersion: "13.7.0",
     },
-    "react-native-tab-view": {
-      singleton: true,
-      eager: true,
-      requiredVersion: "^3.5.1",
-    },
     "react-native-vector-icons": {
       singleton: true,
       eager: true,
@@ -146,7 +141,12 @@ const deps = {
       singleton: true,
       eager: true,
       requiredVersion: "^2.1.1",
-    }
+    },
+    "react-native-pager-view": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^6.2.0",
+    },
   };
   
   export { deps };

@@ -19,7 +19,11 @@ import {PaginationItem} from '@src/features/Onbroad/components/PaginationItem';
 import DefaultActionBar from '@src/components/DefaultActionBar';
 import {ONBROAD_DATA, OnbroadType} from '@src/mock';
 import {PaginationContent} from '@src/features/Onbroad/components/PaginationContent';
-import {routerBottomTab, routerMain} from '@src/navigation/routes';
+import {
+  routerBottomTab,
+  routerMain,
+  routerTopTab,
+} from '@src/navigation/routes';
 
 interface IOnbroad extends MainStackScreenProps<'Onbroad'> {}
 type OOnbroad = {};
@@ -86,6 +90,9 @@ const Onbroad = forwardRef<OOnbroad, IOnbroad>((props, ref) => {
           onPress={() =>
             navigation.navigate(routerMain.BottomTab, {
               screen: routerBottomTab.Home,
+              params: {
+                screen: routerTopTab.Explore,
+              },
             })
           }>
           <Box

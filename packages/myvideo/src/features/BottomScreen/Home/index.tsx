@@ -4,6 +4,7 @@ import {Box, Text, fontSizeLine, heightLize, widthLize} from 'pmn-rn-component';
 import Header from './components/Header';
 import IconCompass from '@src/assets/icons/IconCompass';
 import {ScrollView} from 'react-native-gesture-handler';
+import TopScreen from './TopScreen';
 interface IHome extends BottomStackScreenProps<'Home'> {}
 type OHome = {};
 const Home = forwardRef<OHome, IHome>((_props, ref) => {
@@ -45,7 +46,7 @@ const Home = forwardRef<OHome, IHome>((_props, ref) => {
           </Text>
         </ScrollView>
       </Box>
-      <Text size={16}>Home</Text>
+      <TopScreen />
     </Box>
   );
 });
