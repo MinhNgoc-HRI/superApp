@@ -7,6 +7,7 @@ interface IHome extends BottomStackScreenProps<'Home'> {}
 type OHome = {};
 const Home = forwardRef<OHome, IHome>((_props, ref) => {
   useImperativeHandle(ref, () => ({}));
+
   return (
     <Box flex={1} color="#1C1E28">
       {/* header */}

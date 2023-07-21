@@ -1,4 +1,4 @@
-import React, {forwardRef, useCallback, useImperativeHandle} from 'react';
+import React, {forwardRef, memo, useCallback, useImperativeHandle} from 'react';
 import {TopStackParamList} from '@src/navigation/types';
 import {TabNavigationState} from '@react-navigation/native';
 import {routerTopTab} from '@src/navigation/routes';
@@ -11,8 +11,8 @@ import {
   heightLize,
 } from 'pmn-rn-component';
 import {Animated} from 'react-native';
-
 const BoxAnimated = Animated.createAnimatedComponent(Box);
+const TextAnimated = Animated.createAnimatedComponent(Text);
 export type IButtonTopBar = {
   index: number;
   routes: TabNavigationState<TopStackParamList>['routes'];
@@ -30,11 +30,9 @@ const ButtonTopBar = forwardRef<OButtonTopBar, IButtonTopBar>((props, ref) => {
   useImperativeHandle(ref, () => ({}));
   const input = routes.map((_, i) => i);
   const output = routes.map((_, i) => (i === index ? 1 : 0));
-  const opacity = position.interpolate({
-    inputRange: input,
-    outputRange: output,
-    extrapolate: 'clamp',
-  });
+  const outputColor = routes.map((_, i) =>
+    i === index ? 'rgba(255,255,255,1)' : 'rgba(176,176,187,1)',
+  );
   const convertTabName = useCallback(
     (n: TabNavigationState<TopStackParamList>['routes'][number]['name']) => {
       switch (n) {
@@ -71,25 +69,35 @@ const ButtonTopBar = forwardRef<OButtonTopBar, IButtonTopBar>((props, ref) => {
         center
         paddingVertical={heightLize(12)}
         width={widthLize(70)}>
-        <Text
+        <TextAnimated
           weight="700"
           size={fontSizeLine(14)}
           lineHeight={fontSizeLine(20)}
-          color="#FFF"
-          marginLeft={widthLize(4)}>
+          marginLeft={widthLize(4)}
+          style={{
+            color: position.interpolate({
+              inputRange: input,
+              outputRange: outputColor,
+            }),
+          }}>
           {convertTabName(name)}
-        </Text>
+        </TextAnimated>
         <BoxAnimated
           position="absolute"
           bottom={0}
           height={heightLize(3)}
           width={widthLize(70)}
-          style={{opacity: opacity}}
+          style={{
+            opacity: position.interpolate({
+              inputRange: input,
+              outputRange: output,
+              extrapolate: 'clamp',
+            }),
+          }}
           color="#D21F3C"
         />
       </BoxAnimated>
     </TouchRippleSingle>
   );
 });
-
-export default ButtonTopBar;
+export default memo(ButtonTopBar);

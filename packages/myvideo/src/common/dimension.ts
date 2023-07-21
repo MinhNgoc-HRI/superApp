@@ -6,5 +6,5 @@ export const refBottomTab = createRef<OBottomTabBar>();
 export const DIMENSION = {
   width: Dimensions.get('window').width,
   height: Dimensions.get('window').height,
-  getHeightBotomTab: () => refBottomTab?.current?.getBottomTabBarHeight,
+  getHeightBotomTab: () => refBottomTab?.current?.getBottomTabBarHeight(),
 };

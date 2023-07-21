@@ -1,5 +1,6 @@
 import React, {
   forwardRef,
+  memo,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -111,4 +112,4 @@ const TopTabBar = forwardRef<OTopTabBar, ITopTabBar>((props, ref) => {
   );
 });
 
-export default TopTabBar;
+export default memo(TopTabBar);

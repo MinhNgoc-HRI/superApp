@@ -11,6 +11,7 @@ import Short from '@src/features/BottomScreen/Short';
 import Livestream from '@src/features/BottomScreen/Livestream';
 import Favorite from '@src/features/BottomScreen/Favorite';
 import Profile from '@src/features/BottomScreen/Profile';
+import {refBottomTab} from '@src/common/dimension';
 const Stack = createBottomTabNavigator<BottomStackParamList>();
 interface IBottomScreen extends MainStackScreenProps<'BottomTab'> {}
 type OBottomScreen = {};
@@ -23,7 +24,7 @@ const BottomScreen = forwardRef<OBottomScreen, IBottomScreen>(() => {
         lazy: true,
         headerShown: false,
       }}
-      tabBar={props => <BottomTabBar {...props} />}>
+      tabBar={props => <BottomTabBar ref={refBottomTab} {...props} />}>
       <Stack.Screen name={routerBottomTab.Home} component={Home} />
       <Stack.Screen name={routerBottomTab.Short} component={Short} />
       <Stack.Screen name={routerBottomTab.Livestream} component={Livestream} />

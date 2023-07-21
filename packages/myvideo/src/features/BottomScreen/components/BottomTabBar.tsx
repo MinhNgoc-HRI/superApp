@@ -17,18 +17,13 @@ import {
 import {routerBottomTab} from '@src/navigation/routes';
 import IconHome from '@src/assets/icons/IconHome';
 import IconShort from '@src/assets/icons/IconShort';
-import {StyleSheet, View} from 'react-native';
+import {LayoutChangeEvent, StyleSheet, View} from 'react-native';
 import {BottomStackParamList} from '@src/navigation/types';
 import {NavigationState} from '@react-navigation/native';
 import IconLive from '@src/assets/icons/IconLive';
 import IconHeart from '@src/assets/icons/IconHeart';
 import IconProfile from '@src/assets/icons/IconProfile';
-import {
-  measure,
-  runOnJS,
-  useAnimatedRef,
-  useDerivedValue,
-} from 'react-native-reanimated';
+import {useAnimatedRef} from 'react-native-reanimated';
 
 interface IBottomTabBar extends BottomTabBarProps {}
 export type OBottomTabBar = {
@@ -40,14 +35,10 @@ const BottomTabBar = forwardRef<OBottomTabBar, IBottomTabBar>((props, ref) => {
   const [height, setHeight] = useState<number>(0);
   const aref = useAnimatedRef<View>();
 
-  useDerivedValue(() => {
-    if (_WORKLET) {
-      const measured = measure(aref);
-      if (measured !== null) {
-        runOnJS(setHeight)(measured.height);
-      }
-    }
-  });
+  const handleLayout = useCallback((event: LayoutChangeEvent) => {
+    const {height: h} = event.nativeEvent.layout;
+    setHeight(h);
+  }, []);
   useImperativeHandle(
     ref,
     () => ({
@@ -117,6 +108,7 @@ const BottomTabBar = forwardRef<OBottomTabBar, IBottomTabBar>((props, ref) => {
   return (
     <Box
       ref={aref}
+      onLayout={handleLayout}
       position="absolute"
       bottom={0}
       row
