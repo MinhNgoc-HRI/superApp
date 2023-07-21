@@ -8,7 +8,7 @@ import type {StackScreenProps} from '@react-navigation/stack';
 export type TopStackParamList = {
   Explore: undefined;
   Suggest: undefined;
-  Start: undefined;
+  Star: undefined;
   Entertainment: undefined;
   Music: undefined;
   TVShow: undefined;

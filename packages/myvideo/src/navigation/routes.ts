@@ -25,7 +25,7 @@ export const routerBottomTab: Entries<BottomStackParamList> = {
 };
 export const routerTopTab: Entries<TopStackParamList> = {
   Suggest: 'Suggest',
-  Start: 'Start',
+  Star: 'Star',
   Entertainment: 'Entertainment',
   Music: 'Music',
   TVShow: 'TVShow',

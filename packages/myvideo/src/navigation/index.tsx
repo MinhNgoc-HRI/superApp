@@ -9,8 +9,8 @@ const Navigator: React.FC<any> = () => {
     prefixes: ['myvideo://'],
     config: {
       screens: {
-        Home: {
-          path: 'home',
+        Login: {
+          path: 'login',
         },
       },
     },
