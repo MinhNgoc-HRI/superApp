@@ -144,7 +144,7 @@ const PopupTerm = forwardRef<OPopupTerm, IPopupTerm>((props, refPopupTerm) => {
                 size={fontSizeLine(14)}
                 lineHeight={fontSizeLine(18)}
                 color={'#FFD130'}>
-                Điều khoản sử dụng của Myvideo
+                Điều khoản sử dụng của Watchify
               </Text>
             </Box>
             <Box margin={[widthLize(24), heightLize(24)]}>

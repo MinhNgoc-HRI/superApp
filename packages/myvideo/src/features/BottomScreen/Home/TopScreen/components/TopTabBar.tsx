@@ -43,13 +43,11 @@ const TopTabBar = forwardRef<OTopTabBar, ITopTabBar>((props, ref) => {
   );
   // GestureEvent<PanGestureHandlerEventPayload>,
   useEffect(() => {
-    if (index) {
-      refScrollView?.current?.scrollTo({
-        x: widthLize(70) * (index - 1),
-        y: 0,
-        animated: true,
-      });
-    }
+    refScrollView?.current?.scrollTo({
+      x: widthLize(70) * (index - 1),
+      y: 0,
+      animated: true,
+    });
   }, [index]);
   const gestureHandler = useAnimatedGestureHandler<
     any,
@@ -93,6 +91,7 @@ const TopTabBar = forwardRef<OTopTabBar, ITopTabBar>((props, ref) => {
       <ScrollView
         ref={refScrollView}
         horizontal
+        showsHorizontalScrollIndicator={false}
         onGestureEvent={gestureHandler}
         contentContainerStyle={{
           paddingLeft: widthLize(10),

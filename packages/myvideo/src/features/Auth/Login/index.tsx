@@ -71,7 +71,7 @@ const Login = forwardRef<OLogin, ILogin>((props, _ref) => {
               lineHeight={fontSizeLine(24)}
               weight={'700'}
               color={'#fff'}>
-              Myvideo và trải nghiệm
+              Watchify và trải nghiệm
             </Text>
           </Box>
           <Box>
@@ -165,7 +165,7 @@ const Login = forwardRef<OLogin, ILogin>((props, _ref) => {
               size={fontSizeLine(14)}
               lineHeight={fontSizeLine(18)}
               color={'#FFD130'}>
-              Điều khoản sử dụng của Myvideo
+              Điều khoản sử dụng của Watchify
             </Text>
           </Box>
         </KeyboardAwareScrollView>

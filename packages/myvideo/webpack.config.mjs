@@ -173,6 +173,7 @@ export default env => {
             // /node_modules(.*[/\\])+react-native-reanimated-carousel/,
             // add /node_modules(.*[/\\])+color/ to fix issue react-navigation/top-tab
             /node_modules(.*[/\\])+color/,
+            /node_modules(.*[/\\])+react-native-linear-gradient/,
           ],
           use: 'babel-loader',
         },

@@ -27,7 +27,7 @@ const Header = () => {
           weight="800"
           color="#fff"
           marginLeft={widthLize(6)}>
-          MyVideo
+          Watchify
         </Text>
       </Box>
       <Box flex={1} row center justifyContent="space-around">

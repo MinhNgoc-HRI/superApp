@@ -115,7 +115,7 @@ const deps = {
     "react-native-reanimated-carousel": {
       singleton: true,
       eager: true,
-      requiredVersion: "3.4.0",
+      requiredVersion: "^3.5.1",
     },
     "react-native-svg": {
       singleton: true,
@@ -147,6 +147,11 @@ const deps = {
       eager: true,
       requiredVersion: "^6.2.0",
     },
+    "react-native-linear-gradient": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^2.7.3",
+    }
   };
   
   export { deps };
