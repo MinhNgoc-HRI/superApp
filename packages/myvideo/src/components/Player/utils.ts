@@ -1,7 +1,7 @@
 export const videoInfo = {
-  title: 'Bad Guy',
+  title: 'L.I.E',
   album: 'When We All Fall Asleep, Where Do We Go?',
-  author: 'Billie Eilish',
+  author: 'Mono',
   avatar: require('../../assets/images/imgAvatar.png'),
   source: 'https://assets.afcdn.com/video49/20210722/v_645516.m3u8',
   desc: 'A react native video player components demo, this is desc',

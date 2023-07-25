@@ -1,8 +1,8 @@
 import React, {
   forwardRef,
   useCallback,
+  useContext,
   useImperativeHandle,
-  useState,
 } from 'react';
 import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
 import {
@@ -24,28 +24,24 @@ import IconLive from '@src/assets/icons/IconLive';
 import IconHeart from '@src/assets/icons/IconHeart';
 import IconProfile from '@src/assets/icons/IconProfile';
 import {useAnimatedRef} from 'react-native-reanimated';
+import {BottomTabContext, setBottomTabHeight} from '@src/store/bottomTab';
 
 interface IBottomTabBar extends BottomTabBarProps {}
-export type OBottomTabBar = {
-  getBottomTabBarHeight: () => number;
-};
+export type OBottomTabBar = {};
 const BottomTabBar = forwardRef<OBottomTabBar, IBottomTabBar>((props, ref) => {
   const {navigation} = props;
+  const {dispatch} = useContext(BottomTabContext);
   const {index, routes} = props.state;
-  const [height, setHeight] = useState<number>(0);
   const aref = useAnimatedRef<View>();
 
-  const handleLayout = useCallback((event: LayoutChangeEvent) => {
-    const {height: h} = event.nativeEvent.layout;
-    setHeight(h);
-  }, []);
-  useImperativeHandle(
-    ref,
-    () => ({
-      getBottomTabBarHeight: () => height,
-    }),
-    [height],
+  const handleLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      const {height: h} = event.nativeEvent.layout;
+      dispatch(setBottomTabHeight(h));
+    },
+    [dispatch],
   );
+  useImperativeHandle(ref, () => ({}), []);
   const renderIcon = useCallback((name: string, isActive: boolean) => {
     switch (name) {
       case routerBottomTab.Home:

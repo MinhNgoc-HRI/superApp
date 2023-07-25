@@ -1,5 +1,5 @@
 export interface PlayerState {
-  snapPoint: number;
+  snapPoint: number /* tắt = -1  mở = 0  thu nhỏ = 1  */;
   paused: boolean;
 }
 

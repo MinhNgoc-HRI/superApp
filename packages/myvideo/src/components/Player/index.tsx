@@ -1,5 +1,11 @@
 import LottieView from 'lottie-react-native';
-import React, {useCallback, useContext, useEffect, useRef} from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import {
   ScrollView,
   StatusBar,
@@ -40,13 +46,19 @@ import {
   Box,
 } from 'pmn-rn-component';
 import IconClose from '@src/assets/icons/IconClose';
+import {BottomTabContext} from '@src/store/bottomTab';
 const BoxAnimated = Animated.createAnimatedComponent(Box);
 const {height, isIos, width} = DIMENSION;
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
 
 const sliderTranslateY = 6;
 const VIDEO_DEFAULT_HEIGHT = width * (9 / 16);
-const StatusBarHeight = isIos ? 0 : StatusBar?.currentHeight ?? 0 + 5;
+/* android tùy loại mới work..đéo hiểu kiểu gì   */
+const StatusBarHeight = isIos
+  ? 0
+  : StatusBar?.currentHeight
+  ? StatusBar?.currentHeight - 5
+  : 5;
 
 export const Player = ({
   videoTranslateY,
@@ -55,23 +67,23 @@ export const Player = ({
 }) => {
   const insets = useSafeAreaInsets();
   const insetsRefs = useRef(insets);
-  const btheight = 86;
+  const {store: storeBT} = useContext(BottomTabContext);
+  const btheight = useMemo(
+    /* +5 để thêm khoảng trống giữa video khi ở snapshot(1) và bottom tab   */
+    () => storeBT?.heightBottom + 5 || 0,
+    [storeBT?.heightBottom],
+  );
   const {store, dispatch} = useContext(PlayerContext);
-  // const DISMISS_POINT = height - 45 - insets.bottom;
-  // const SNAP_POINT = [
-  //   0,
-  //   height + StatusBarHeight - 40 - VIDEO_MIN_HEIGHT - insets.bottom,
-  // ];
   const DISMISS_POINT = height - btheight;
   const SNAP_POINT = [
     0,
     height + StatusBarHeight - VIDEO_MIN_HEIGHT - btheight,
   ];
-  console.log({height, StatusBarHeight, SNAP_POINT, VIDEO_MIN_HEIGHT});
   const diasbled = Boolean(store.snapPoint > SNAP_POINT[0]);
   const paused = Boolean(store.paused || store.snapPoint === -1);
 
   const fullViewHeight = height - VIDEO_DEFAULT_HEIGHT - insets.top;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const snapPoints = [fullViewHeight, height - insets.top];
   const isTapPaused = useRef(paused);
 
@@ -92,7 +104,6 @@ export const Player = ({
     return {
       transform: [
         {
-          // translateY: clamp(y, 0, height - insets.bottom - 48),
           translateY: clamp(y, 0, height - btheight),
         },
       ],
@@ -137,7 +148,21 @@ export const Player = ({
         : clamp(targetWidth, 120, width),
     };
   }, [panTranslationY, sheetTranslationY]);
-
+  const getContentStyle = useAnimatedStyle(() => {
+    const y = panTranslationY.value + sheetTranslationY.value;
+    return {
+      opacity: interpolate(
+        y,
+        [VIDEO_MIN_HEIGHT, height - VIDEO_DEFAULT_HEIGHT],
+        [1, 0],
+      ),
+      backgroundColor: interpolateColor(
+        y,
+        [VIDEO_MIN_HEIGHT, height - VIDEO_DEFAULT_HEIGHT],
+        ['rgb(33, 33, 33)', 'transparent'],
+      ),
+    };
+  }, [panTranslationY, sheetTranslationY]);
   const getBackdropStyle = useAnimatedStyle(() => {
     const y = panTranslationY.value + sheetTranslationY.value;
     return {
@@ -348,6 +373,7 @@ export const Player = ({
         style={[styles.backdrop, getViewBackdropStyle]}
       />
       <BoxAnimated
+        pointerEvents={store.snapPoint === 1 ? 'box-none' : 'auto'}
         padding={[insets.top, 0, insets.left, insets.right]}
         style={[styles.pageView, pageStyle]}>
         <GestureDetector gesture={panGesture}>
@@ -428,11 +454,17 @@ export const Player = ({
           </BoxAnimated>
         </GestureDetector>
         <BoxAnimated color="rgb(33, 33, 33)" style={[styles.sliderTranslate]} />
-        <Box width={width} color="rgb(33, 33, 33)" style={[styles.flex1]}>
+        <BoxAnimated
+          width={width}
+          // color="rgb(33, 33, 33)"
+          pointerEvents={store.snapPoint === 1 ? 'none' : 'auto'}
+          style={[styles.flex1, getContentStyle]}>
           <ScrollView contentContainerStyle={styles.flex1}>
             <TouchableHighlight
               underlayColor={palette.G5(0.6)}
-              onPress={() => {}}>
+              onPress={() => {
+                console.log('title press');
+              }}>
               <Box style={[styles.titleContainer]}>
                 <Text
                   color="#FFF"
@@ -445,10 +477,10 @@ export const Player = ({
             </TouchableHighlight>
           </ScrollView>
           <BoxAnimated
-            pointerEvents={store.snapPoint === SNAP_POINT[0] ? 'none' : 'auto'}
+            pointerEvents={store.snapPoint === SNAP_POINT[0] ? 'none' : 'none'}
             style={[styles.backdrop, getBackdropStyle]}
           />
-        </Box>
+        </BoxAnimated>
       </BoxAnimated>
     </>
   );
