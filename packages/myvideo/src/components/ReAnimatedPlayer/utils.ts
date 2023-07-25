@@ -1,4 +1,6 @@
 import {padStart} from 'lodash';
+import {useRef} from 'react';
+import {ORipple} from './Ripple';
 
 /**
  * Format a time string as mm:ss
@@ -60,5 +62,26 @@ export const formatTimeToMins = (duration: number) => {
     '0',
   );
 
-  return `${formattedMinutes}:${formattedSeconds}`;
+  return `${Number(formattedMinutes) < 0 ? '00' : formattedMinutes}:${
+    Number(formattedSeconds) < 0 ? '00' : formattedSeconds
+  }`;
+};
+
+export const bin = (value: boolean): 0 | 1 => {
+  'worklet';
+  return value ? 1 : 0;
+};
+export interface Vector<T = number> {
+  x: T;
+  y: T;
+}
+
+export const useRefs = () => {
+  const rippleLeft = useRef<ORipple>(null);
+  const rippleRight = useRef<ORipple>(null);
+
+  return {
+    rippleLeft,
+    rippleRight,
+  };
 };

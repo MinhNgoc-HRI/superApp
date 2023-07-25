@@ -151,7 +151,27 @@ const deps = {
       singleton: true,
       eager: true,
       requiredVersion: "^2.7.3",
-    }
+    },
+    "lottie-react-native": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^5.1.6",
+    },
+    "react-native-awesome-slider": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^2.4.2",
+    },
+    "react-native-orientation-locker": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^1.5.0",
+    },
+    "react-native-video": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "6.0.0-alpha.6",
+    },
   };
   
   export { deps };

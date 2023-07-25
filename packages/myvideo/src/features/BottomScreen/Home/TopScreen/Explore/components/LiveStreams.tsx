@@ -13,7 +13,7 @@ const LiveStreams = forwardRef<OLiveStreams, ILiveStreams>(() => {
           row
           justifyContent="space-between"
           center
-          padding={[widthLize(12), heightLize(12)]}>
+          padding={[heightLize(12), heightLize(12), 0, widthLize(12)]}>
           <Text
             size={fontSizeLine(20)}
             lineHeight={fontSizeLine(24)}

@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 import React, {forwardRef, useImperativeHandle} from 'react';
-import {TouchRippleSingle, Text} from 'pmn-rn-component';
+import {TouchRippleSingle, Text, Box} from 'pmn-rn-component';
 export type IVideoReplayed = {
   isPlayed: boolean;
   onPress: () => void;
@@ -16,7 +16,9 @@ const VideoReplayed = forwardRef<OVideoReplayed, IVideoReplayed>(
     }
     return (
       <TouchRippleSingle onPress={onPress}>
-        <Text />
+        <Box style={styles.buttonStyle}>
+          <Text size={0}>replay</Text>
+        </Box>
       </TouchRippleSingle>
     );
   },
@@ -24,4 +26,14 @@ const VideoReplayed = forwardRef<OVideoReplayed, IVideoReplayed>(
 
 export default VideoReplayed;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  buttonStyle: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    elevation: 1,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: '50%',
+    zIndex: 1,
+  },
+});
