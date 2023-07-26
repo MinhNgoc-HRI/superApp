@@ -68,6 +68,7 @@ export const Player = ({
   const insets = useSafeAreaInsets();
   const insetsRefs = useRef(insets);
   const {store: storeBT} = useContext(BottomTabContext);
+  const bufferTime = useSharedValue<number>(0);
   const btheight = useMemo(
     /* +5 để thêm khoảng trống giữa video khi ở snapshot(1) và bottom tab   */
     () => storeBT?.heightBottom + 5 || 0,
@@ -114,11 +115,10 @@ export const Player = ({
   const getVideoContainerStyle = useAnimatedStyle(() => {
     const y = panTranslationY.value + sheetTranslationY.value;
     return {
-      backgroundColor: isFullScreen.value ? '#000' : 'rgb(33, 33, 33)',
+      backgroundColor: isFullScreen.value ? '#000' : '#141414',
       opacity: interpolate(y, [SNAP_POINT[1], DISMISS_POINT], [1, 0]),
     };
   }, [panTranslationY, sheetTranslationY]);
-
   const customAnimationStyle = useAnimatedStyle(() => {
     const y = panTranslationY.value + sheetTranslationY.value;
 
@@ -159,7 +159,7 @@ export const Player = ({
       backgroundColor: interpolateColor(
         y,
         [VIDEO_MIN_HEIGHT, height - VIDEO_DEFAULT_HEIGHT],
-        ['rgb(33, 33, 33)', 'transparent'],
+        ['#141414', 'transparent'],
       ),
     };
   }, [panTranslationY, sheetTranslationY]);
@@ -174,7 +174,7 @@ export const Player = ({
       backgroundColor: interpolateColor(
         y,
         [VIDEO_MIN_HEIGHT, height - VIDEO_DEFAULT_HEIGHT],
-        ['rgb(33, 33, 33)', 'transparent'],
+        ['#141414', 'transparent'],
       ),
     };
   }, [panTranslationY, sheetTranslationY]);
@@ -377,7 +377,10 @@ export const Player = ({
         padding={[insets.top, 0, insets.left, insets.right]}
         style={[styles.pageView, pageStyle]}>
         <GestureDetector gesture={panGesture}>
-          <BoxAnimated style={getVideoContainerStyle}>
+          <BoxAnimated
+            radius={10}
+            overflow="hidden"
+            style={getVideoContainerStyle}>
             <BoxAnimated style={[styles.videoThumbInfo, videoThumbInfo]}>
               <Box>
                 <Text
@@ -440,6 +443,7 @@ export const Player = ({
                 bubbleWidth: 120,
                 bubbleMaxWidth: 120,
                 disable: diasbled,
+                cache: bufferTime,
               }}
               videoHeight={videoHeight}
               customAnimationStyle={customAnimationStyle}
@@ -448,15 +452,18 @@ export const Player = ({
               resizeMode="cover"
               isFullScreen={isFullScreen}
               disableControl={diasbled}
-              onPostProgress={() => console.log('onProgress')}
+              onPostProgress={data =>
+                (bufferTime.value = data?.playableDuration || 0)
+              }
               onPostSeek={() => console.log('onSeek')}
+              onError={e => console.log({e})}
             />
           </BoxAnimated>
         </GestureDetector>
-        <BoxAnimated color="rgb(33, 33, 33)" style={[styles.sliderTranslate]} />
+        {/* <BoxAnimated color="#141414" style={[styles.sliderTranslate]} /> */}
         <BoxAnimated
           width={width}
-          // color="rgb(33, 33, 33)"
+          // color="#141414"
           pointerEvents={store.snapPoint === 1 ? 'none' : 'auto'}
           style={[styles.flex1, getContentStyle]}>
           <ScrollView contentContainerStyle={styles.flex1}>

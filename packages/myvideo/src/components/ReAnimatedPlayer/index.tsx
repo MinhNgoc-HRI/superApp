@@ -824,7 +824,6 @@ const VideoPlayer = forwardRef<VideoPlayerRef, VideoProps>(
     };
     const taps = Gesture.Exclusive(doubleTapHandle, singleTapHandler);
     const gesture = Gesture.Race(onPanGesture, taps);
-    console.log({renderBackIcon});
     return (
       <>
         <StatusBar
@@ -846,8 +845,10 @@ const VideoPlayer = forwardRef<VideoPlayerRef, VideoProps>(
               onSeek={onSeek}
               onEnd={onEnd}
               onProgress={onProgress}
+              progressUpdateInterval={500}
               fullscreenAutorotate={true}
               pictureInPicture
+              playInBackground
             />
             {Boolean(children) && children}
             <VideoLoader loading={loading} />
