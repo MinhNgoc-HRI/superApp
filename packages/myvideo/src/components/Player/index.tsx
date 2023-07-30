@@ -7,15 +7,17 @@ import React, {
   useRef,
 } from 'react';
 import {
-  ScrollView,
   StatusBar,
   StyleSheet,
-  TouchableHighlight,
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from 'react-native';
 import {clamp} from 'react-native-awesome-slider/src/utils';
-import {Gesture, GestureDetector} from 'react-native-gesture-handler';
+import {
+  Gesture,
+  GestureDetector,
+  ScrollView,
+} from 'react-native-gesture-handler';
 import Animated, {
   interpolate,
   interpolateColor,
@@ -47,6 +49,7 @@ import {
 } from 'pmn-rn-component';
 import IconClose from '@src/assets/icons/IconClose';
 import {BottomTabContext} from '@src/store/bottomTab';
+import PlayerDetails from './components/PlayerDetails';
 const BoxAnimated = Animated.createAnimatedComponent(Box);
 const {height, isIos, width} = DIMENSION;
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
@@ -159,7 +162,7 @@ export const Player = ({
       backgroundColor: interpolateColor(
         y,
         [VIDEO_MIN_HEIGHT, height - VIDEO_DEFAULT_HEIGHT],
-        ['#141414', 'transparent'],
+        ['#000', 'transparent'],
       ),
     };
   }, [panTranslationY, sheetTranslationY]);
@@ -417,9 +420,7 @@ export const Player = ({
             </BoxAnimated>
             <ReAnimatedPlayer
               source={{uri: videoInfo.source}}
-              playWhenInactive
               posterResizeMode="cover"
-              ignoreSilentSwitch="ignore"
               headerBarTitle={`${videoInfo.author} - ${videoInfo.title}`}
               onTapBack={foldVideo}
               paused={paused}
@@ -463,25 +464,22 @@ export const Player = ({
         {/* <BoxAnimated color="#141414" style={[styles.sliderTranslate]} /> */}
         <BoxAnimated
           width={width}
-          // color="#141414"
+          height={height - VIDEO_DEFAULT_HEIGHT}
           pointerEvents={store.snapPoint === 1 ? 'none' : 'auto'}
           style={[styles.flex1, getContentStyle]}>
-          <ScrollView contentContainerStyle={styles.flex1}>
-            <TouchableHighlight
-              underlayColor={palette.G5(0.6)}
-              onPress={() => {
-                console.log('title press');
-              }}>
-              <Box style={[styles.titleContainer]}>
-                <Text
-                  color="#FFF"
-                  size={fontSizeLine(16)}
-                  lineHeight={fontSizeLine(24)}
-                  style={
-                    styles.title
-                  }>{`${videoInfo.author} - ${videoInfo.title}`}</Text>
-              </Box>
-            </TouchableHighlight>
+          <ScrollView>
+            {/* content video here */}
+            <PlayerDetails
+              data={{
+                author: videoInfo.author,
+                title: videoInfo.title,
+                album: videoInfo.album,
+                trending: {
+                  trendingDesc: '',
+                },
+              }}
+            />
+            {/* content video here */}
           </ScrollView>
           <BoxAnimated
             pointerEvents={store.snapPoint === SNAP_POINT[0] ? 'none' : 'none'}
@@ -496,7 +494,7 @@ export const Player = ({
 const styles = StyleSheet.create({
   flex1: {
     flex: 1,
-    minHeight: height,
+    // minHeight: height,
   },
   authors: {
     justifyContent: 'space-between',

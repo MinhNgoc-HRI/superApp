@@ -9,6 +9,7 @@ import React, {
 } from 'react';
 import {
   Dimensions,
+  Platform,
   StatusBar,
   StyleProp,
   StyleSheet,
@@ -847,8 +848,18 @@ const VideoPlayer = forwardRef<VideoPlayerRef, VideoProps>(
               onProgress={onProgress}
               progressUpdateInterval={500}
               fullscreenAutorotate={true}
-              pictureInPicture
-              playInBackground
+              hideShutterView={true}
+              ignoreSilentSwitch={Platform.select({
+                android: 'obey',
+                ios: 'ignore',
+              })}
+              pictureInPicture={true} // note: PIP only works on iOS device
+              playInBackground={Platform.select({android: true, ios: false})} // note: play in background only works on device
+              playWhenInactive={true} // note: play when inactive only works on device
+              onPictureInPictureStatusChanged={data => console.log({data})}
+              onRestoreUserInterfaceForPictureInPictureStop={() => {
+                console.log('eeêeeeeeeee stop');
+              }}
             />
             {Boolean(children) && children}
             <VideoLoader loading={loading} />

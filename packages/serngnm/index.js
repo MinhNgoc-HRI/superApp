@@ -13,7 +13,6 @@ const port = 3000
 //   res.download(file); // Set disposition and send it.
 // });
 app.get('/:video', function(req, res) {
-  console.log('calll')
   const tsFileName = req.params.video;
   const pathToFile = path.resolve(__dirname, 'src/assets/mono', tsFileName);
   res.sendFile(pathToFile);
