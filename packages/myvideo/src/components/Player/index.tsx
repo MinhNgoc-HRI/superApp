@@ -376,7 +376,7 @@ export const Player = ({
         style={[styles.backdrop, getViewBackdropStyle]}
       />
       <BoxAnimated
-        pointerEvents={store.snapPoint === 1 ? 'box-none' : 'auto'}
+        pointerEvents={store.snapPoint === 0 ? 'auto' : 'box-none'}
         padding={[insets.top, 0, insets.left, insets.right]}
         style={[styles.pageView, pageStyle]}>
         <GestureDetector gesture={panGesture}>

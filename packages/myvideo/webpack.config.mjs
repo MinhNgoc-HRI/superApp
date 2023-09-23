@@ -165,12 +165,12 @@ export default env => {
             // /node_modules(.*[/\\])+react-native-tab-view/,
             // /node_modules(.*[/\\])+react-native-pager-view/,
             // /node_modules(.*[/\\])+react-native-paper/,
-            // /node_modules(.*[/\\])+react-native-safe-area-context/,
-            // /node_modules(.*[/\\])+react-native-screens/,
-            // /node_modules(.*[/\\])+react-native-tab-view/,
-            // /node_modules(.*[/\\])+react-native-vector-icons/,
-            // /node_modules(.*[/\\])+react-native-keyboard-aware-scroll-view/,
-            // /node_modules(.*[/\\])+react-native-reanimated-carousel/,
+            // /node_modules(.*[/\\])+prop-types/,
+            // /node_modules(.*[/\\])+deprecated-react-native-prop-types/,
+            // /node_modules(.*[/\\])+keymirror/,
+            // /node_modules(.*[/\\])+react-native-video/,
+            // /node_modules(.*[/\\])+lottie-react-native/,
+            // /node_modules(.*[/\\])+react-native-awesome-slider/,
             // add /node_modules(.*[/\\])+color/ to fix issue react-navigation/top-tab
             /node_modules(.*[/\\])+color/,
             /node_modules(.*[/\\])+react-native-linear-gradient/,
@@ -185,7 +185,7 @@ export default env => {
          */
         {
           test: /\.[jt]sx?$/,
-          exclude: /node_modules/,
+          exclude: [/node_modules/],
           use: {
             loader: 'babel-loader',
             options: {
@@ -235,15 +235,10 @@ export default env => {
           },
         },
         // {
-        //   test: /\.[jt]sx?$/,
-        //   include: [/src\/assets\/icons\/IconFB/],
-        //   use: {
-        //     loader: '@svgr/webpack',
-        //     options: {
-        //       native: true,
-        //       dimensions: false,
-        //     },
-        //   },
+        //   test: /\.json$/,
+        //   include: [path.join(dirname, 'src/assets/json')],
+        //   type: 'json',
+        //   // use: 'json-loader',
         // },
         {
           test: /\.svg$/,

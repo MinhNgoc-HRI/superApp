@@ -1,4 +1,3 @@
-// TODO: example and test
 import {useInterval} from './useInterval';
 import {useCallback} from 'react';
 import {useBoolean} from './useBoolean';

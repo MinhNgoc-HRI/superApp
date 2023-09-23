@@ -172,6 +172,16 @@ const deps = {
       eager: true,
       requiredVersion: "6.0.0-alpha.6",
     },
+    "@shopify/react-native-skia": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^0.1.197",
+    },
+    "lottie-react-native": {
+      singleton: true,
+      eager: true,
+      requiredVersion: "^5.1.6",
+    }
   };
   
   export { deps };

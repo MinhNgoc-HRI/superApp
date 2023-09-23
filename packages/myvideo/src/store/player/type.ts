@@ -4,7 +4,7 @@ export interface PlayerState {
 }
 
 export const initialPlayerState: PlayerState = {
-  snapPoint: 0,
+  snapPoint: -1,
   paused: true,
 };
 export enum ActionType {
