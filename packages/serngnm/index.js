@@ -12,6 +12,11 @@ const port = 3000
 //   console.log({file})
 //   res.download(file); // Set disposition and send it.
 // });
+app.get('/index', function(req, res){
+    setTimeout(()=>  'Oke', 50000)
+ 
+  // return res.json({timer})
+})
 app.get('/:video', function(req, res) {
   const tsFileName = req.params.video;
   const pathToFile = path.resolve(__dirname, 'src/assets/mono', tsFileName);
